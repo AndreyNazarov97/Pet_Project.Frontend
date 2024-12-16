@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
-import RootLayout from "./RootLayout"
+import RootLayout from "../components/RootLayout"
+import LoginPage from "../pages/Login/LoginPage"
 
 export const router = createBrowserRouter([
 	{
@@ -20,7 +21,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "login",
-				element: <div className="text-8xl text-center ">Login</div>,
+				element: <LoginPage />,
+			},
+			{
+				path: "profile",
+				element: <div className="text-8xl text-center ">Profile</div>,
 			},
 		],
 		errorElement: <div className="text-8xl text-center">404</div>,
