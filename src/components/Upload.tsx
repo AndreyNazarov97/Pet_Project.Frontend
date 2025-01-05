@@ -5,7 +5,7 @@ import { PartEtagInfo } from "../models/PartEtagInfo"
 export function Upload() {
 	const handleFileChange = async (file: File) => {
 		const {
-			data: { key, uploadId },
+			data: { key, uploadId, bucketName, prefix },
 		} = await FilesService.StartMultipart(file.name, file.type, file.size)
 
 		const chunkSize = 10 * 1024 * 1024 // 10MB
@@ -18,9 +18,14 @@ export function Upload() {
 			const presignedUrl = await FilesService.GetPresignedUrl(
 				key,
 				uploadId,
-				partNumber
+				partNumber,
+				bucketName,
+				file.type,
+				prefix,
+				file.name
 			)
 
+			console.log(presignedUrl.data.url)
 			const response = await FilesService.UploadPart(
 				presignedUrl.data.url,
 				chunk
@@ -35,7 +40,15 @@ export function Upload() {
 			partNumber++
 		}
 
-		const response = await FilesService.CompleteMultipart(key, uploadId, parts)
+		const response = await FilesService.CompleteMultipart(
+			key,
+			uploadId,
+			bucketName,
+			file.type,
+			prefix,
+			file.name,
+			parts
+		)
 
 		alert(`File uploaded successfully!` + response.data.location)
 	}
