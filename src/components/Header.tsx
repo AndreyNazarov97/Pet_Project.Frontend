@@ -11,6 +11,7 @@ export default function Header() {
 				<div className="flex flex-row gap-4 items-center justify-center">
 					<NavLink to="volunteers">Volunteers</NavLink>
 					<NavLink to="profile">Profile</NavLink>
+					<NavLink to="upload">Upload</NavLink>
 				</div>
 				<NavLink to="/" className="pr-5">
 					<div className="flex flex-row items-center gap-2">

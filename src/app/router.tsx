@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import RootLayout from "../components/RootLayout"
+import { Upload } from "../components/Upload"
 import LoginPage from "../pages/Login/LoginPage"
 
 export const router = createBrowserRouter([
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
 			{
 				path: "profile",
 				element: <div className="text-8xl text-center ">Profile</div>,
+			},
+			{
+				path: "upload",
+				element: <Upload />,
 			},
 		],
 		errorElement: <div className="text-8xl text-center">404</div>,
